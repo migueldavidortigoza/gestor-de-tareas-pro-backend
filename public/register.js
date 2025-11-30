@@ -1,3 +1,4 @@
+const API_URL = "https://gestor-de-tareas-pro.onrender.com";
 const formRegister = document.getElementById("form-register");
 const inputNombre = document.getElementById("reg-nombre");
 const inputEmail = document.getElementById("reg-email");
@@ -30,7 +31,7 @@ formRegister.addEventListener("submit", async (e) => {
     }
 
     try {
-        const res = await fetch("/api/auth/register", {
+        const res = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -43,7 +44,7 @@ formRegister.addEventListener("submit", async (e) => {
         const data = await res.json();
 
         if (!res.ok) {
-            regMensaje.textContent = data.error || "Error al regisrar usuario.";
+            regMensaje.textContent = data.error || "Error al registrar usuario.";
             return;
         }
 

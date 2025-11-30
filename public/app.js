@@ -1,4 +1,5 @@
 const lista = document.getElementById("lista-tareas");
+const API_URL = "https://gestor-de-tareas-pro.onrender.com";
 const form = document.getElementById("form-tarea");
 const buscador = document.getElementById("buscador");
 const btnBorrarCompletadas = document.getElementById("btn-borrar-completadas");
@@ -59,7 +60,7 @@ if (token) {
 
 async function obtenerTareas() {
     try {
-        const res = await fetch("/api/tareas", {
+        const res = await fetch(`${API_URL}/api/tareas`, {
             headers: {
                 "Content-Type": "application/json",
                 "x-auth-token": token
@@ -150,7 +151,7 @@ form.addEventListener("submit", async (e) => {
         prioridad: document.getElementById("prioridad").value
     };
 
-    const res = await fetch("/api/tareas", {
+    const res = await fetch(`${API_URL}/api/tareas`, {
         method: "POST",
         headers: { 
             "Content-Type": "application/json",
@@ -170,7 +171,7 @@ form.addEventListener("submit", async (e) => {
 
 // 🔵 3. Marcar tarea como completada
 async function marcarCompletada(id, estado) {
-    const res = await fetch(`/api/tareas/${id}`, { 
+    const res = await fetch(`${API_URL}/api/tareas/${id}`, { 
         method: "PUT",
         headers: { 
             "Content-Type": "application/json",
@@ -189,7 +190,7 @@ async function marcarCompletada(id, estado) {
 
 // 🔵 4. Eliminar tarea individual
 async function eliminarTarea(id) {
-    const res = await fetch(`/api/tareas/${id}`, { 
+    const res = await fetch(`${API_URL}/api/tareas/${id}`, { 
         method: "DELETE",
         headers: { 
             "x-auth-token": token 
@@ -206,7 +207,7 @@ async function eliminarTarea(id) {
 
 // 🔵 5. Eliminar tareas completadas
 btnBorrarCompletadas.addEventListener("click", async () => {
-    const res = await fetch("/api/tareas/completadas", { 
+    const res = await fetch(`${API_URL}/api/tareas/completadas`, { 
         method: "DELETE",
         headers: { 
             "x-auth-token": token 
@@ -267,7 +268,7 @@ formEditar.addEventListener("submit", async (e) => {
         completada: inputEditarCompletada.checked
     };
 
-    const res = await fetch(`/api/tareas/${tareaEditando._id}`, {
+    const res = await fetch(`${API_URL}/api/tareas/${tareaEditando._id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -325,7 +326,7 @@ function handleDrop(e) {
 async function guardarOrdenEnServidor() {
     const ordenIds = tareasGlobal.map((t) => t._id);
 
-    await fetch("/api/tareas/reordenar", {
+    await fetch(`${API_URL}/api/tareas/reordenar`, {
         method: "PUT",
         headers: { 
             "Content-Type": "application/json",

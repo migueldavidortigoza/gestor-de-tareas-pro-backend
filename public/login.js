@@ -1,4 +1,5 @@
 const formLogin = document.getElementById("form-login");
+const API_URL = "https://gestor-de-tareas-pro.onrender.com";
 const emailInput = document.getElementById("login-email");
 const passInput = document.getElementById("login-pass");
 const errorBox = document.getElementById("login-error");
@@ -23,7 +24,7 @@ formLogin.addEventListener("submit", async (e) => {
     }
 
     try {
-        const res = await fetch("/api/auth/login", {
+        const res = await fetch(`${API_URL}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
