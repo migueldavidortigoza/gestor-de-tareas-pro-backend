@@ -62,9 +62,10 @@ PORT=3000
 4️⃣ Ejecutar el servidor
 ```
 npm start
+```
 El servidor estará disponible en:
 👉 http://localhost:3000
-```
+
 
 🌍 Deploy (Render)
 Backend desplegado en Render:
